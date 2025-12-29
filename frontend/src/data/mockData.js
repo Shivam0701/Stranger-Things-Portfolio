@@ -179,7 +179,7 @@ export const experience = [
       "Regulatory compliance framework implementation",
       "Security threat assessment and mitigation"
     ],
-    status: "ACTIVE"
+    status: "COMPLETE"
   },
   {
     id: 2,
