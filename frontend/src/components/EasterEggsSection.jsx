@@ -1,19 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FileDown, FlipVertical, AlertTriangle, Binary, Trophy, Award, Cloud, Code } from 'lucide-react';
+import {
+  FileDown,
+  FlipVertical,
+  AlertTriangle,
+  Binary,
+  Trophy,
+  Award,
+  Cloud,
+  Code
+} from 'lucide-react';
 import { easterEggs, achievements, personalInfo } from '../data/mockData';
 import { Button } from './ui/button';
 import { toast } from '../hooks/use-toast';
 import './EasterEggsSection.css';
 
 const iconMap = {
-  FileDown: FileDown,
-  FlipVertical: FlipVertical,
-  AlertTriangle: AlertTriangle,
-  Binary: Binary,
-  Trophy: Trophy,
-  Award: Award,
-  Cloud: Cloud,
-  Code: Code
+  FileDown,
+  FlipVertical,
+  AlertTriangle,
+  Binary,
+  Trophy,
+  Award,
+  Cloud,
+  Code
 };
 
 const EasterEggsSection = () => {
@@ -23,36 +32,32 @@ const EasterEggsSection = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.2 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    sectionRef.current && observer.observe(sectionRef.current);
+    return () => sectionRef.current && observer.unobserve(sectionRef.current);
   }, []);
 
   const handleEasterEgg = (action) => {
     switch (action) {
-      case 'download':
+      case 'download': {
+        // 🔥 REAL DOWNLOAD FIX
+        const link = document.createElement('a');
+        link.href = personalInfo.resumeLink; // /Shivam_Raj_Resume.pdf
+        link.download = 'Shivam_Raj_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
         toast({
-          title: "ACCESSING CLASSIFIED FILES",
-          description: "Resume download would start here. File ready for extraction!",
-          duration: 4000,
+          title: "CLASSIFIED FILE EXTRACTED",
+          description: "Resume download initiated successfully.",
+          duration: 3000,
         });
-        // In production: window.open(personalInfo.resumeLink, '_blank');
         break;
-      
+      }
+
       case 'flip':
         setActiveEffect('flip');
         document.body.style.transform = 'rotate(180deg)';
@@ -66,17 +71,17 @@ const EasterEggsSection = () => {
           setActiveEffect(null);
         }, 5000);
         break;
-      
+
       case 'alert':
         setActiveEffect('alert');
         toast({
           title: "⚠️ DEMOGORGON DETECTED ⚠️",
-          description: "Threat level: CRITICAL! Initiating emergency protocols!",
+          description: "Threat level: CRITICAL!",
           duration: 4000,
         });
         setTimeout(() => setActiveEffect(null), 4000);
         break;
-      
+
       case 'matrix':
         setActiveEffect('matrix');
         toast({
@@ -86,7 +91,7 @@ const EasterEggsSection = () => {
         });
         setTimeout(() => setActiveEffect(null), 8000);
         break;
-      
+
       default:
         break;
     }
@@ -98,18 +103,20 @@ const EasterEggsSection = () => {
       id="easter-eggs"
       className="easter-eggs-section relative py-24 px-6 overflow-hidden"
     >
-      {/* Matrix rain effect */}
       {activeEffect === 'matrix' && (
         <div className="matrix-rain">
           {[...Array(30)].map((_, i) => (
-            <div key={i} className="matrix-column" style={{ left: `${i * 3.33}%`, animationDelay: `${Math.random() * 2}s` }}>
+            <div
+              key={i}
+              className="matrix-column"
+              style={{ left: `${i * 3.33}%` }}
+            >
               01010101
             </div>
           ))}
         </div>
       )}
 
-      {/* Alert effect */}
       {activeEffect === 'alert' && (
         <div className="alert-overlay">
           <div className="alert-flash"></div>
@@ -117,74 +124,45 @@ const EasterEggsSection = () => {
       )}
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section Header */}
         <div className={`text-center mb-16 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}>
-          <h2 className="section-title text-5xl md:text-7xl font-bold mb-4 text-red-500">
-            HIDDEN LAB
-          </h2>
-          <p className="text-xl text-gray-400 tracking-widest font-mono">
+          <h2 className="text-5xl md:text-7xl font-bold text-red-500">HIDDEN LAB</h2>
+          <p className="text-gray-400 tracking-widest font-mono">
             SECRET EXPERIMENTS & ACHIEVEMENTS
           </p>
-          <div className="section-divider mt-8"></div>
         </div>
 
-        {/* Easter Eggs Grid */}
-        <div className="mb-20">
-          <h3 className={`text-3xl font-bold text-center mb-10 text-red-400 ${isVisible ? 'fade-in-up delay-200' : 'opacity-0'}`}>
-            ACTIVATE SECRET PROTOCOLS
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {easterEggs.map((egg, index) => {
-              const IconComponent = iconMap[egg.icon];
-              return (
-                <div
-                  key={egg.id}
-                  className={`easter-egg-card ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
-                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+        <div className="grid md:grid-cols-4 gap-6 mb-20">
+          {easterEggs.map((egg, index) => {
+            const Icon = iconMap[egg.icon];
+            return (
+              <div key={egg.id} className="easter-egg-card">
+                <Icon className="w-8 h-8 text-red-500 mb-3" />
+                <h4 className="text-red-400 font-bold">{egg.title}</h4>
+                <p className="text-gray-400 text-sm mb-4">{egg.description}</p>
+                <Button
+                  onClick={() => handleEasterEgg(egg.action)}
+                  variant="outline"
+                  className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
                 >
-                  <div className="egg-icon-wrapper">
-                    <IconComponent className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h4 className="text-lg font-bold text-red-400 mb-2">{egg.title}</h4>
-                  <p className="text-gray-400 text-sm mb-4 font-mono">{egg.description}</p>
-                  <Button
-                    onClick={() => handleEasterEgg(egg.action)}
-                    variant="outline"
-                    size="sm"
-                    className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
-                  >
-                    ACTIVATE
-                  </Button>
-                </div>
-              );
-            })}
-          </div>
+                  ACTIVATE
+                </Button>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Achievements Grid */}
-        <div>
-          <h3 className={`text-3xl font-bold text-center mb-10 text-red-400 ${isVisible ? 'fade-in-up delay-400' : 'opacity-0'}`}>
-            BADGES & CERTIFICATIONS
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => {
-              const IconComponent = iconMap[achievement.icon];
-              return (
-                <div
-                  key={achievement.id}
-                  className={`achievement-card ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
-                  style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-                >
-                  <div className="achievement-icon">
-                    <IconComponent className="w-10 h-10 text-yellow-500" />
-                  </div>
-                  <h4 className="text-base font-bold text-yellow-400 mb-1">{achievement.title}</h4>
-                  <p className="text-gray-400 text-xs mb-2">{achievement.issuer}</p>
-                  <p className="text-gray-500 text-xs font-mono">{achievement.date}</p>
-                </div>
-              );
-            })}
-          </div>
+        <div className="grid md:grid-cols-4 gap-6">
+          {achievements.map((ach) => {
+            const Icon = iconMap[ach.icon];
+            return (
+              <div key={ach.id} className="achievement-card">
+                <Icon className="w-10 h-10 text-yellow-500 mb-2" />
+                <h4 className="text-yellow-400 font-bold">{ach.title}</h4>
+                <p className="text-gray-400 text-xs">{ach.issuer}</p>
+                <p className="text-gray-500 text-xs">{ach.date}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -101,7 +101,10 @@ export const projects = [
       "Responsive UI with clean design"
     ],
     image: "https://images.unsplash.com/photo-1559842135-8d5e4214ae77",
-    status: "MISSION COMPLETE"
+    status: "MISSION COMPLETE",
+    liveLink: null,
+    fallback: "LOST IN THE UPSIDE DOWN 🌀",
+    sourceCode: "https://github.com/Shivam0701/Shira-DocMatch"
   },
   {
     id: 2,
@@ -117,7 +120,10 @@ export const projects = [
       "Dynamic contact forms and profiles"
     ],
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
-    status: "MISSION COMPLETE"
+    status: "MISSION COMPLETE",
+    liveLink: "https://real-estate-shira.vercel.app",
+    fallback: "LOST IN THE UPSIDE DOWN 🌀",
+    sourceCode: "https://github.com/Shivam0701/Real-Estate-Shira"
   },
   {
     id: 3,
@@ -133,7 +139,10 @@ export const projects = [
       "Real-time solution visualization"
     ],
     image: "https://images.unsplash.com/photo-1607971584791-aca00eb17fd5",
-    status: "MISSION COMPLETE"
+    status: "MISSION COMPLETE",
+    liveLink: null,
+    fallback: "LOST IN THE UPSIDE DOWN 🌀",
+    sourceCode: "https://github.com/Shivam0701/SUDUKO-Solver-Visualizer"
   },
   {
     id: 4,
@@ -149,7 +158,10 @@ export const projects = [
       "Command-line interface design"
     ],
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-    status: "MISSION COMPLETE"
+    status: "MISSION COMPLETE",
+    liveLink: null,
+    fallback: "LOST IN THE UPSIDE DOWN 🌀",
+    sourceCode: "https://github.com/Shivam0701/PYTHON-QUIZ-GAME"
   }
 ];
 
