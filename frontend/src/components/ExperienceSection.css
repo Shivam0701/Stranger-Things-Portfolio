@@ -1,0 +1,182 @@
+.experience-section {
+  background: #0a0a0a;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Section title */
+.section-title {
+  font-family: 'Creepster', cursive;
+  text-shadow: 
+    0 0 10px #ff0033,
+    0 0 20px #ff0033,
+    0 0 30px #d41f2d;
+  letter-spacing: 4px;
+}
+
+/* Section divider */
+.section-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #d41f2d, transparent);
+  margin: 0 auto;
+  box-shadow: 0 0 10px #ff0033;
+}
+
+/* Classified file */
+.classified-file {
+  background: rgba(26, 10, 10, 0.8);
+  border: 3px solid rgba(212, 31, 45, 0.4);
+  border-radius: 8px;
+  padding: 0;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(212, 31, 45, 0.2);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.classified-file::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 31, 45, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.classified-file:hover::before {
+  left: 100%;
+}
+
+.classified-file:hover {
+  border-color: #d41f2d;
+  box-shadow: 0 0 50px rgba(212, 31, 45, 0.5);
+  transform: translateY(-5px);
+}
+
+/* File header */
+.file-header {
+  background: linear-gradient(135deg, rgba(212, 31, 45, 0.3), rgba(212, 31, 45, 0.1));
+  padding: 20px 30px;
+  border-bottom: 2px solid rgba(212, 31, 45, 0.5);
+  position: relative;
+}
+
+/* Classified stamp */
+.classified-stamp {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  background: transparent;
+  border: 3px solid #d41f2d;
+  color: #d41f2d;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  transform: rotate(15deg);
+  opacity: 0.7;
+  box-shadow: 0 0 20px rgba(212, 31, 45, 0.5);
+  animation: stampPulse 2s infinite;
+}
+
+@keyframes stampPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* File content */
+.file-content {
+  padding: 30px;
+}
+
+.file-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Role section */
+.role-section {
+  padding: 15px;
+  background: rgba(212, 31, 45, 0.1);
+  border-left: 3px solid #d41f2d;
+  border-radius: 4px;
+}
+
+/* Responsibilities section */
+.responsibilities-section {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  border: 1px solid rgba(212, 31, 45, 0.2);
+}
+
+/* File footer */
+.file-footer {
+  padding: 15px 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 2px solid rgba(212, 31, 45, 0.3);
+}
+
+/* Redacted line effect */
+.redacted-line {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000 0px,
+    #000 10px,
+    #d41f2d 10px,
+    #d41f2d 20px
+  );
+  margin-bottom: 10px;
+}
+
+/* Scan lines effect */
+.scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 3px
+  );
+  pointer-events: none;
+  opacity: 0.3;
+  animation: scanMove 10s linear infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+/* Fade-in animations */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

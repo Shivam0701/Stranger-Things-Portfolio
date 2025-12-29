@@ -1,0 +1,155 @@
+.skills-section {
+  background-color: #0a0a0a;
+  font-family: 'Roboto Mono', monospace;
+  position: relative;
+}
+
+/* Grid overlay effect */
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(212, 31, 45, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 31, 45, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Section title */
+.section-title {
+  font-family: 'Creepster', cursive;
+  text-shadow: 
+    0 0 10px #ff0033,
+    0 0 20px #ff0033,
+    0 0 30px #d41f2d;
+  letter-spacing: 4px;
+}
+
+/* Section divider */
+.section-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #d41f2d, transparent);
+  margin: 0 auto;
+  box-shadow: 0 0 10px #ff0033;
+}
+
+/* Skill category card */
+.skill-category-card {
+  box-shadow: 0 0 20px rgba(212, 31, 45, 0.2);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-category-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 31, 45, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skill-category-card:hover::before {
+  opacity: 1;
+}
+
+.skill-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 40px rgba(212, 31, 45, 0.5);
+}
+
+/* Icon wrapper */
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 31, 45, 0.2);
+  border: 2px solid #d41f2d;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(212, 31, 45, 0.5);
+  animation: iconPulse 2s infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 31, 45, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 0, 51, 0.8);
+  }
+}
+
+/* Energy meter (skill bar) */
+.energy-meter {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.energy-fill {
+  height: 100%;
+  background: linear-gradient(to right, #d41f2d, #ff0033);
+  border-radius: 5px;
+  position: relative;
+  transition: width 1.5s ease-out;
+  box-shadow: 0 0 15px rgba(212, 31, 45, 0.8);
+}
+
+.energy-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
+  animation: energyPulse 1.5s infinite;
+}
+
+@keyframes energyPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Skill item hover */
+.skill-item {
+  transition: transform 0.2s ease;
+}
+
+.skill-item:hover {
+  transform: translateX(5px);
+}
+
+/* Fade-in animations */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Mono:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  position: relative;
+  background: #0a0a0a;
+  color: #e8e8e8;
+  overflow-x: hidden;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d41f2d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff0033;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(212, 31, 45, 0.5);
+  color: #fff;
+}
+
+/* Smooth transitions for body transform (upside down effect) */
+body {
+  transition: transform 1s ease-in-out;
+}
