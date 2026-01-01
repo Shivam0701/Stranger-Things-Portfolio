@@ -14,9 +14,9 @@ const Footer = () => {
           </div>
           
           <div className="footer-center">
-            <p className="text-gray-400 text-sm flex items-center gap-2">
+           {/* <p className="text-gray-400 text-sm flex items-center gap-2">
               Built with <Heart className="w-4 h-4 text-red-500 animate-pulse" fill="#d41f2d" /> from the Upside Down
-            </p>
+            </p>*/}
             <p className="text-gray-600 text-xs mt-2">
               © {new Date().getFullYear()} Shivam Raj. All rights reserved.
             </p>
